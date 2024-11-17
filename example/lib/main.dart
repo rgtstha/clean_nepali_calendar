@@ -17,8 +17,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  final NepaliCalendarController _nepaliCalendarController =
-      NepaliCalendarController();
+  final NepaliCalendarController _nepaliCalendarController = NepaliCalendarController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +39,7 @@ class HomePage extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 5.0),
                       child: Text(
                         '$_',
-                        style:
-                            TextStyle(color: (index == 6) ? Colors.red : null),
+                        style: TextStyle(color: (index == 6) ? Colors.red : null),
                       ),
                     ));
               },
@@ -71,9 +69,7 @@ class HomePage extends StatelessWidget {
                 enableFadeTransition: false,
                 centerHeaderTitle: false,
                 titleTextStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepOrange,
-                    fontSize: 20.0),
+                    fontWeight: FontWeight.bold, color: Colors.deepOrange, fontSize: 20.0),
               ),
               initialDate: NepaliDateTime.now(),
               firstDate: first,
@@ -93,8 +89,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget cellBuilder(isToday, isSelected, isDisabled, nepaliDate, label, text,
-      calendarStyle, isWeekend) {
+  Widget cellBuilder(
+      isToday, isSelected, isDisabled, nepaliDate, label, text, calendarStyle, isWeekend) {
     // print(isSelected);
     Decoration _buildCellDecoration() {
       if (isSelected && isToday) {
@@ -132,9 +128,7 @@ class HomePage extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            Text(text,
-                style: TextStyle(
-                    fontSize: 20, color: isWeekend ? Colors.red : null)),
+            Text(text, style: TextStyle(fontSize: 20, color: isWeekend ? Colors.red : null)),
 
             // to show events
             Align(
@@ -145,8 +139,7 @@ class HomePage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Text(nepaliDate.toDateTime().day.toString(),
-                  style: TextStyle(
-                      fontSize: 8, color: isWeekend ? Colors.red : null)),
+                  style: TextStyle(fontSize: 8, color: isWeekend ? Colors.red : null)),
             ),
           ],
         ),

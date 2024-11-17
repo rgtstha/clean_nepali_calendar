@@ -11,8 +11,8 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
   SliverGridLayout getLayout(SliverConstraints constraints) {
     const columnCount = 7;
     final tileWidth = constraints.crossAxisExtent / columnCount;
-    final tileHeight = math.min(_kDayPickerRowHeight,
-        constraints.viewportMainAxisExtent / (_kMaxDayPickerRowCount + 1));
+    final tileHeight = math.min(
+        _kDayPickerRowHeight, constraints.viewportMainAxisExtent / (_kMaxDayPickerRowCount + 1));
     return SliverGridRegularTileLayout(
       crossAxisCount: columnCount,
       mainAxisStride: tileHeight,
@@ -79,24 +79,20 @@ class _DaysView extends StatelessWidget {
     switch (headerDayType) {
       case HeaderDayType.fullName:
         {
-          headers = (language == Language.english)
-              ? dayHeaderFullNameEnglish
-              : dayHeaderFullNameNepali;
+          headers =
+              (language == Language.english) ? dayHeaderFullNameEnglish : dayHeaderFullNameNepali;
           break;
         }
       case HeaderDayType.halfName:
         {
-          headers = (language == Language.english)
-              ? dayHeaderHalfNameEnglish
-              : dayHeaderHalfNameNepali;
+          headers =
+              (language == Language.english) ? dayHeaderHalfNameEnglish : dayHeaderHalfNameNepali;
 
           break;
         }
       case HeaderDayType.initial:
         {
-          headers = (language == Language.english)
-              ? dayHeaderLetterEnglish
-              : dayHeaderLetterNepali;
+          headers = (language == Language.english) ? dayHeaderLetterEnglish : dayHeaderLetterNepali;
 
           break;
         }
@@ -112,9 +108,7 @@ class _DaysView extends StatelessWidget {
                     child: Text(
                       label.value,
                       style: headerStyle?.copyWith(
-                        color: label.key == 6
-                            ? calendarStyle.weekEndTextColor
-                            : headerStyle.color,
+                        color: label.key == 6 ? calendarStyle.weekEndTextColor : headerStyle.color,
                       ),
                     ),
                   ),
@@ -133,8 +127,7 @@ class _DaysView extends StatelessWidget {
     final labels = <Widget>[];
     if (calendarStyle.renderDaysOfWeek) {
       labels.addAll(
-        _getDayHeaders(language, themeData.textTheme.caption, headerDayType,
-            headerDayBuilder),
+        _getDayHeaders(language, themeData.textTheme.bodySmall, headerDayType, headerDayBuilder),
       );
     }
 
@@ -152,19 +145,14 @@ class _DaysView extends StatelessWidget {
         final dayToBuild = NepaliDateTime(year, month, day);
         final disabled = dayToBuild.isAfter(lastDate) ||
             dayToBuild.isBefore(firstDate) ||
-            (selectableDayPredicate != null &&
-                !selectableDayPredicate!(dayToBuild));
+            (selectableDayPredicate != null && !selectableDayPredicate!(dayToBuild));
 
-        final isSelectedDay = selectedDate.year == year &&
-            selectedDate.month == month &&
-            selectedDate.day == day;
-        final bool isCurrentDay = currentDate.year == year &&
-            currentDate.month == month &&
-            currentDate.day == day;
-        final semanticLabel =
-            '${formattedMonth(month, Language.english)} $day, $year';
-        final text =
-            '${language == Language.english ? day : NepaliUnicode.convert('$day')}';
+        final isSelectedDay =
+            selectedDate.year == year && selectedDate.month == month && selectedDate.day == day;
+        final bool isCurrentDay =
+            currentDate.year == year && currentDate.month == month && currentDate.day == day;
+        final semanticLabel = '${formattedMonth(month, Language.english)} $day, $year';
+        final text = '${language == Language.english ? day : NepaliUnicode.convert('$day')}';
 
         Widget dayWidget = _DayWidget(
           isDisabled: disabled,
@@ -203,8 +191,7 @@ class _DaysView extends StatelessWidget {
           child: GridView.custom(
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: _kDayPickerGridDelegate,
-            childrenDelegate:
-                SliverChildListDelegate(labels, addRepaintBoundaries: false),
+            childrenDelegate: SliverChildListDelegate(labels, addRepaintBoundaries: false),
           ),
         ),
       ],
@@ -230,24 +217,8 @@ final List<String> dayHeaderFullNameNepali = [
   "शुक्रबार",
   "शनिबार"
 ];
-final List<String> dayHeaderHalfNameEnglish = [
-  "Sun",
-  "Mon",
-  "Tues",
-  "Wed",
-  "Thu",
-  "Fri",
-  "Sat"
-];
-final List<String> dayHeaderHalfNameNepali = [
-  "आइत",
-  "सोम",
-  "मङ्गल",
-  "बुध",
-  "बिही",
-  "शुक्र",
-  "शनि"
-];
+final List<String> dayHeaderHalfNameEnglish = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+final List<String> dayHeaderHalfNameNepali = ["आइत", "सोम", "मङ्गल", "बुध", "बिही", "शुक्र", "शनि"];
 
 final List<String> dayHeaderLetterEnglish = [
   'S',
